@@ -33,3 +33,38 @@
 - 또한, 웹 서버는 정적 리소스만 제공하기 때문에 잘 죽지 않습니다. 
   - 하지만, WAS는 애플리 케이션 로직이 동작하기 때문에 쉽게 죽습니다.
   - 그래도, Web서버는 죽지 않았으므로, WEB서버는 오류 화면을 제공할 수 있습니다. 
+---
+## 서블릿
+- 웹 브라우저는 POST 전송을 하면, HTTP 메세지를 클라이언트에게 보냅니다. 
+  - Conent-Type: application/x-www-form-urlencoded로 전달합니다. 
+- 이외에 여러가지 응답을 넣어야하는데, 파싱을해서 넣는 것도 힘들고, 응답 메세지는 결국 text이므로, 값을 가져오는것도 힘들다
+- 서블릿은 그래서, 응답 메세지 생성, 부터 여러가지 일들을 다 해줍니다.
+### 특징
+```java
+@WebServlet(name = "helloServlet", urlPatterns = "/hello")
+public class HelloServlet extends HttpServlet {
+  @Override 
+  protected void service(HttpservletRequest request, HttpServletResponse response) {ㅎ
+    // 애플리케이션 로직
+  }
+}
+```
+- `urlPatterns(/hello)`의 url이 호출된다면 서블릿의 코드가 실행이 됩니다. 
+- 우리는 요청 정보를 `HttpServletRequest`, 응답 정보를 `HttpServletResponse`를 통해서, 쉽게 사용을 할 수있습니다. 
+- 우리는 이러한 것을 통해서 HTTP 스펙을 매우 편리하게 사용이 가능합니다. 
+### HTTP 요청, 응답 흐름
+- HTTP 요청이 온다면
+  - WAS는 Request, Response 객체를 새로 만들어서 서블릿 객체를 호출하빈다. 
+  - 개발자는 Request 객체에서 HTTP 요청 정보를 편하게 꺼내서 사용가능하빈다. 또한, 응답도 마찬가지 입니다. 
+  - WAS는 Response 객체에 담겨있는 내용을 통해 HTTP 응답 정보를 생성합니다. 
+  - 이러한 Servlet 객체는 WAS안에 있는 **서블릿 컨테이너**가 생성하고 호출, 관리까지 진행합니다. 
+### 서블릿 컨테이너
+- 톰캣과 같이 Servlet을 지원하는 WAS를 **서블릿 컨테이너**라고 부릅니다. 
+- 이는, 서블릿 객체를 생성 -> 초기화 -> 호출 -> 종료 하는 생명주기를 관리합니다. 
+- 이들의 객체는 **싱글톤으로 관리 됩니다**
+  - 그래서, 최초의 로딩 시점에서 미리 만들어 두고 재활용합니다. 
+  - 결국 모든 고객의 요청은 동일한 서블릿 객체 인스턴스에 접근하게 됩니다. 
+  - **그렇기 때문에 공유 변수 사용에 주의 해야합니다.**
+- JSP도 서블릿으로 변환되어서 사용됩니다. 
+- 동시요청을 위한 **멀티 쓰레드 처리**를 지원합니다.
+---
