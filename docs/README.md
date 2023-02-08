@@ -180,3 +180,17 @@ public class HelloServlet extends HttpServlet {
 - 저장 : `request.setAttribute(name, value)`
 - 조회 : `reqeust.getSession(create: true)`
 - 세션 관리 : `request.getSession(create: true)`
+---
+## HTTP 요청 데이터 
+- 보통은 다음 3가지 방법을 사용합니다.
+- GET - 쿼리파라미터
+  - `?username=hello`
+    - 메시지 바디 없이, URL을 통해 데이터를 전달
+    - 검색, 필터, 페이징 등에 많이 사용
+- POST - HTML Form
+  - content-type: application/x-www-form-urlencoded
+  - 메시지 바디에 쿼리 파라미터 형식으로 전달함 
+  - 회원 가입 등에 사용을 함
+- HTTP Message body
+  - HTTP API에서 주로 사용을 함 (JSON, XML, TEXT등)
+  - 주로 JSON을 사용하고 POST, PUT, PATCH등을 사용
