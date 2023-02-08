@@ -189,6 +189,7 @@ public class HelloServlet extends HttpServlet {
     - 검색, 필터, 페이징 등에 많이 사용
 - POST - HTML Form
   - content-type: application/x-www-form-urlencoded
+  - 이는 GET의 쿼리 파라미터 형식과 같습니다. (서버에서 받을 때만)
   - 메시지 바디에 쿼리 파라미터 형식으로 전달함 
   - 회원 가입 등에 사용을 함
 - HTTP Message body
