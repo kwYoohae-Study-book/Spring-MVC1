@@ -175,3 +175,8 @@ public class HelloServlet extends HttpServlet {
   - 내추럴 템플릿으로, HTML의 모양을 유지하면서 뷰 템플릿을 적용을 가능하게 하였습니다. 
   - 스프링 MVC와 강력한 기능을 통합해서 제공합니다. 
   - 하지만, Freemarker나 Velocity보다는 느립니다.
+---
+### HTTP 요청이 있을 경우 임시 저장소 기능이 존재
+- 저장 : `request.setAttribute(name, value)`
+- 조회 : `reqeust.getSession(create: true)`
+- 세션 관리 : `request.getSession(create: true)`
