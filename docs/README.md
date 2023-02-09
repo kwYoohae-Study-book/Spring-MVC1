@@ -218,3 +218,11 @@ public class HelloServlet extends HttpServlet {
 - Controller에 비지니스 로직을 처리하면, 너무 많은 역할을 담당하게됨
 - 그래서 우리는 **Service** 라는 계층을 별도로 만들어 관리함
 - 컨트롤러는 service만 호출하면됨
+- 우리는 `request.setAttirbute()`, `request.getAttirbute()`를 통해서 데이터를 보관, 조회함 -> 이것이 모델로 쓰임
+---
+## Redirect vs Forward
+- 리다이렉트
+  - 실제 클라이언트에 응답이 나갔다가, 클라이언트가 redirect 경로로 다시 요청함
+  - 클라이언트가 인지할 수 있고, URL 경로도 실제 변경됨
+- 포워드
+  - 서버 내부에서 일어나는 호출이므로, 클라이언트가 전혀 인지하지 못함
