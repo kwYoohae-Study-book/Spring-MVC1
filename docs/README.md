@@ -226,3 +226,17 @@ public class HelloServlet extends HttpServlet {
   - 클라이언트가 인지할 수 있고, URL 경로도 실제 변경됨
 - 포워드
   - 서버 내부에서 일어나는 호출이므로, 클라이언트가 전혀 인지하지 못함
+---
+## MVC 패턴의 한계
+- MVC덕에 컨트롤러의 역하로가 뷰를 렌더링  하는역할을 명확하게 구분할 수 있음
+- 하지만, 컨트롤러는 중복이 많다. 
+```java
+// 포워드 중복
+RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+dispatcher.forward(request, response);
+
+// ViewPath 중복
+String viewPath = "/WEB-INF/views/new-form.jsp"
+```
+- 이 뿐만이 아닌, 공통처리도 어렵고 여러가지 문제점들이 있습니다. 
+- 우리는 **프론트 컨트롤러 패턴**을 도입해서 이러한 것을 해결할 수 있다.
