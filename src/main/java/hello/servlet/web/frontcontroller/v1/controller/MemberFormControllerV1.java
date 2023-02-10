@@ -12,7 +12,7 @@ public class MemberFormControllerV1 implements ControllerV1 {
   @Override
   public void process(final HttpServletRequest request, final HttpServletResponse response)
       throws ServletException, IOException {
-    final String viewPath = "WEB-INF/views/new-form.jsp";
+    final String viewPath = "/WEB-INF/views/new-form.jsp";
     final RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
     dispatcher.forward(request, response);
   }
