@@ -247,3 +247,19 @@ String viewPath = "/WEB-INF/views/new-form.jsp"
 - 이후, 어떤 컨트롤러에 가야할지 매핑을 해줍니다.  
 - 그렇기 때문에 다른 컨트롤러 들은 서블릿을 사용하지 않아도 됩니다. 
 - 이를 Spring에서는 `DispatcherServlet`이 Front Controller 패턴으로 이루어짐
+---
+## 스프링 MVC
+1. 클라이언트가 HTTP 요청을 한다. 
+2. Front Controller인 Dispatcher Servlet이 받아 핸들러 매핑에 있는 `HandlerMapping`이라는 곳에 핸들러를 조회한다. 
+3. 핸들러 어댑터 목록을 보고 핸들러를 처리할 수 있는 핸들러 어댑터를 조회합니다. 
+4. 핸들러어댑터에있는 `handle`이라는 메서드를 실행합니다. 
+5. 그러면 핸들러 어댑터는 실제 핸들러를 호출하고, ModelAndView를 반환합니다. 
+6. 이후, 그 정보를 가지고 viewResolver를 호출하고, View를 반환합니다. 
+7. 이후, `render(model)`을 호출하고 HTML응답을 내뱉습니다.
+## DispatcherServlet
+- 스프링 MVC의 프론트 컨트롤러가 바로 `DispathcerServlet`입니다. 
+- 이는 `HttpServlet`을 상속받은 것 입니다. 결국 서블릿을 사용합니다. 
+- 또한, 서블릿을 자동으로 등록하면서 **모든 경로**에 대해서 매핑을 합니다. 
+- 서블릿이 호출되면, `HttpServlet`에서 제공하는 `service()` 가 호출이 됩니다. 
+  - MVC는 `DispatcherSevlet`의 부모인, `FrameworkSevlet`에서 `service()`를 오버라이드해놔서, 이를 시작으로 `DispatcherServlet.doDispatch()`가 실행됩니다. 
+  - 결국 `DispatcherServlet`의 `doDispatch()`가 가장 중요합니다.
