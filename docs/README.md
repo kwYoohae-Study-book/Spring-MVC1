@@ -275,3 +275,14 @@ String viewPath = "/WEB-INF/views/new-form.jsp"
 - Controller 인터페이스를 처리하는 어댑터가 존재
 등등이 존재한다. 
 ---
+## 뷰 리졸버
+- 뷰 리졸버는 prefix와 suffix를 지정을 해줘야합니다. 이를 등록해서 동작하게 할 수 있습니다. 
+- 스프링 부트는 자동으로 여러 뷰 리졸버를 등록합니다. 
+  - 빈 이름으로 뷰를 찾아서 반환합니다. 
+  - JSP를 처리할 수 있는 뷰를 반환합니다.
+  - 등등이 존재합니다. 
+### 순서
+1. 핸들러 어댑터를 호출합니다. 이때 논리 뷰 이름을 획득합니다. 
+2. ViewResolver를 호출해서, 맞는 것을 찾아 사용합니다. 
+3. 이후, 뷰 리졸버는 `InternalResourceView`를 반환합니다. 
+4. `InternalResourceView`는 `forward()`를 사용해 JSP를 실행합니다.
