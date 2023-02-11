@@ -263,3 +263,15 @@ String viewPath = "/WEB-INF/views/new-form.jsp"
 - 서블릿이 호출되면, `HttpServlet`에서 제공하는 `service()` 가 호출이 됩니다. 
   - MVC는 `DispatcherSevlet`의 부모인, `FrameworkSevlet`에서 `service()`를 오버라이드해놔서, 이를 시작으로 `DispatcherServlet.doDispatch()`가 실행됩니다. 
   - 결국 `DispatcherServlet`의 `doDispatch()`가 가장 중요합니다.
+---
+## HandlerMapping
+- `RequestMapping`에서 사용하는 것을 매핑 해준다. 
+- 스프링 빈의 이름으로 핸들러를 찾는다.
+- 등등 많은 종류의 Mapping이 존재합니다. 
+---
+## HandlerAdapter
+- RquestMapping에서 사용하는 어댑터가 존재
+- HttpRqeustHandler를 처리하는 얘가 존재
+- Controller 인터페이스를 처리하는 어댑터가 존재
+등등이 존재한다. 
+---
