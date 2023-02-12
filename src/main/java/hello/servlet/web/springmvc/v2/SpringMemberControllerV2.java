@@ -21,7 +21,7 @@ public class SpringMemberControllerV2 {
   }
 
   @RequestMapping
-  public ModelAndView save() {
+  public ModelAndView members() {
     final List<Member> members = memberRepository.findAll();
 
     final ModelAndView mv = new ModelAndView("members");
@@ -30,7 +30,7 @@ public class SpringMemberControllerV2 {
   }
 
   @RequestMapping("/save")
-  public ModelAndView members(HttpServletRequest request, HttpServletResponse response) {
+  public ModelAndView save(HttpServletRequest request, HttpServletResponse response) {
     final String username = request.getParameter("username");
     final int age = Integer.parseInt(request.getParameter("age"));
 
