@@ -286,3 +286,16 @@ String viewPath = "/WEB-INF/views/new-form.jsp"
 2. ViewResolver를 호출해서, 맞는 것을 찾아 사용합니다. 
 3. 이후, 뷰 리졸버는 `InternalResourceView`를 반환합니다. 
 4. `InternalResourceView`는 `forward()`를 사용해 JSP를 실행합니다.
+---
+## @RequestMapping
+- `RequestMappingHandlerMapping`, `RequestMappingHandlerAdapter`는 가장 우선 순위가 높으며, 이를 사용한다. 
+- 실무에서는 이와 같은 방식을 가장 많이 사용을 합니다.
+- 해당 url이 호출 되면, 어노테이션이 받은 메서드가 호출됩니다.
+---
+## @Controller
+- Component 스캔을 통해서 자동으로 빈으로 등록함
+- MVC에서 애노테이션 기반 컨트롤러로 인식을합니다.
+- `@Component`와 `@RequestMapping` 을 가지고도 대체할 수 있습니다. 
+- MVC는 Controller또는 RequestMapping이 클래스 레벨에 있어야합니다. 
+
+
