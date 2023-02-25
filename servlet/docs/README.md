@@ -309,5 +309,16 @@ String viewPath = "/WEB-INF/views/new-form.jsp"
   - 이후 대상 클래스 타입을 지원하는지 확인하빈다. 
   - 또한, HTTP 요청의 Accept 미디어 타입을 지원하는지 확인합니다. 
   - `canWrite()`조건을 만족한다면 `write()`를 호춯해, HTTP 응답 메세지 바디에 데이터를 생성합니다. 
-
-
+---
+## 요청 매핑 핸들러 어뎁터 구조 
+- `RequestMappingHandlerAdapter` 동작 방식
+  - RequestMappingHandlerAdapter는 `ArgumentResolver`를 통해서 다양한 파라미터를 유연하게 처리합니다. 
+    - 우리는 `Model`, `HttpServletRequest` 등등을 유연하게 Spring을 통해서 처리할 수 있습니다. 
+    - 핸들러 매핑 어댑터가 `ArgumentReolver`에게 인자에 담긴 값을 넘겨줄 수 있는지 물어보고, 이를 받습니다. 
+- `ReturnValueHandler`
+  - 이는 위와 비슷하고, 다만 다른점은 응답 값을 변환하고 처리하는 것입니다. 
+### HTTP 메세지 커버터
+- `ArgumentResolver`와 `ReturnValueHandler`는 HTTP 메세지 컨버터를 사용합니다.
+- 파라미터와 반환 값들을 보고, HTTP 메세지 컨버터를 사용해, 필요한 객체를 생성합니다. 이후, 응답 또는 요청의 결과를 만듭니다.
+- 우리는 `ArgumentResolver`, `ReturnValueHandler`, `HttpMessageConverter`을 확장할 수 있게 인터페이스로 제공을 합니다. 
+- 
