@@ -76,13 +76,22 @@ public class BasicItemController {
 //    return "/basic/item";
 //  }
 
+//  @PostMapping("/add")
+//  public String addItemV4(Item item) {
+//    itemRepository.save(item);
+//
+//    // Item 이므로 item 으로 자동등록, 첫번 째만 소문자로 바뀜
+//
+//    return "/basic/item";
+//  }
+
   @PostMapping("/add")
-  public String addItemV4(Item item) {
+  public String addItemV5(Item item) {
     itemRepository.save(item);
 
     // Item 이므로 item 으로 자동등록, 첫번 째만 소문자로 바뀜
 
-    return "/basic/item";
+    return "redirect:/basic/items/" + item.getId();
   }
 
   @GetMapping("/{itemId}/edit")
