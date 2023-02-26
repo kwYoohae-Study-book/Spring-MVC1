@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/basic/items")
@@ -85,13 +85,21 @@ public class BasicItemController {
 //    return "/basic/item";
 //  }
 
+//  @PostMapping("/add")
+//  public String addItemV5(Item item) {
+//    itemRepository.save(item);
+//
+//    // Item 이므로 item 으로 자동등록, 첫번 째만 소문자로 바뀜
+//
+//    return "redirect:/basic/items/" + item.getId();
+//  }
+
   @PostMapping("/add")
-  public String addItemV5(Item item) {
-    itemRepository.save(item);
-
-    // Item 이므로 item 으로 자동등록, 첫번 째만 소문자로 바뀜
-
-    return "redirect:/basic/items/" + item.getId();
+  public String addItemV6(Item item, RedirectAttributes  redirectAttributes) {
+    final Item savedItem = itemRepository.save(item);
+    redirectAttributes.addAttribute("itemId", savedItem.getId());
+    redirectAttributes.addAttribute("status", true);
+    return "redirect:/basic/items/{itemId}";
   }
 
   @GetMapping("/{itemId}/edit")
